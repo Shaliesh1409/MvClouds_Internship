@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lunch Time Remaining </title>
+</head>
+<body>
+    <h1>Lunch Time Remaining </h1>
+    <label for="lunchTime">Enter lunch time:</label>
+    <input type="time" id="lunchTime" />
+    <button onclick="calculateTimeRemaining()">Calculate</button>
+    <p id="result"></p>
+
+    <script>
+        function calculateTimeRemaining() {
+            const lunchTimeInput = document.getElementById("lunchTime").value;
+            const lunchTimeParts = lunchTimeInput.split(":");
+            const lunchHour = parseInt(lunchTimeParts[0], 10);
+            const lunchMinute = parseInt(lunchTimeParts[1], 10);
+
+            const currentTime = new Date();
+            const currentHour = currentTime.getHours();
+            const currentMinute = currentTime.getMinutes();
+
+            const lunchDateTime = new Date();
+            lunchDateTime.setHours(lunchHour);
+            lunchDateTime.setMinutes(lunchMinute);
+            lunchDateTime.setSeconds(0);
+
+            if (lunchDateTime <= currentTime) {
+                lunchDateTime.setDate(lunchDateTime.getDate() + 1); 
+            }
+
+            const timeRemainingMilliseconds = lunchDateTime - currentTime;
+            const hoursRemaining = Math.floor(timeRemainingMilliseconds / (1000 * 60 * 60));
+            const minutesRemaining = Math.floor((timeRemainingMilliseconds % (1000 * 60 * 60)) / (1000 * 60));
+
+            document.getElementById("result").textContent = `Time remaining for lunch: ${hoursRemaining} hours and ${minutesRemaining} minutes`;
+        }
+    </script>
+</body>
+</html>

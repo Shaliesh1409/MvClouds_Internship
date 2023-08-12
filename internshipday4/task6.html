@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Identify First Recurring Character</title>
+</head>
+<body>
+    <h1>Identify First Recurring Character</h1>
+    <input type="file" id="inputWords" rows="5" cols="40">
+    <button onclick="processWords()">Identify Recurring Characters</button>
+    <div id="output"></div>
+
+    <script>
+        function findRecurringCharacter(word, index = 0, charMap = {}) {
+            if (index >= word.length) {
+                return null;
+            }
+
+            const char = word[index];
+            if (charMap[char] !== undefined) {
+                return { character: char, firstIndex: charMap[char], secondIndex: index };
+            } else {
+                charMap[char] = index;
+                return findRecurringCharacter(word, index + 1, charMap);
+            }
+        }
+
+        function processWords() {
+            const inputTextArea = document.getElementById("inputWords");
+            const words = inputTextArea.value.split("\n");
+
+            const outputDiv = document.getElementById("output");
+            outputDiv.innerHTML = "";
+
+            for (let i = 0; i < words.length; i++) {
+                const word = words[i];
+                const result = findRecurringCharacter(word);
+
+                const resultString = result
+                    ? `{ "${result.character}": [${result.firstIndex}, ${result.secondIndex}] }`
+                    : "No recurring character found";
+
+                const resultElement = document.createElement("p");
+                resultElement.textContent = `${i + 1}. Word: "${word}" ➞ ${resultString}`;
+                outputDiv.appendChild(resultElement);
+            }
+        }
+    </script>
+</body>
+</html>

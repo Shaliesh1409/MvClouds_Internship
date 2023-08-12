@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Firebase Image Upload using HTML and JavaScript</title>
+    <style>
+        #photo {
+            margin-top: 200px;
+            margin-left: 450px;
+        }
+
+        #upload {
+            margin-top: 20px;
+            margin-left: 450px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="file" id="photo" /></br>
+    <button id="upload" onclick="uploadImage()">Upload Image</button>
+</body>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-storage.js"></script>
+<script>
+    const firebaseConfig = {
+        // apiKey: "AIzaSyDL5qHM4VM0IH_O3sI8hBNZty8AQnleWa8",
+        // authDomain: "contactme-fa839.firebaseapp.com",
+        // databaseURL: "https://console.firebase.google.com/project/contactme-fa839/storage/contactme-fa839.appspot.com/files",
+        // projectId: "contactme-fa839",
+        // storageBucket: "contactme-fa839.appspot.com",
+        // messagingSenderId: "930377440460",
+        // appId: "1:930377440460:web:5f4e92ca6ab5f2a84a7669"
+        apiKey: "AIzaSyDXYoPSlgtX_WYU5tL7tCWxYK7C46KKyL0",
+        authDomain: "image-90058.firebaseapp.com",
+        projectId: "image-90058",
+        storageBucket: "image-90058.appspot.com",
+        messagingSenderId: "601056034135",
+        appId: "1:601056034135:web:53f8b945ccb936162a9212",
+        measurementId: "G-LK972K5Q1C"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    console.log(firebase);
+    function uploadImage() {
+        const ref = firebase.storage().ref();
+        const file = document.querySelector("#photo").files[0];
+        const name = +new Date() + "-" + file.name;
+        const metadata = {
+            contentType: file.type
+        };
+        const task = ref.child(name).put(file, metadata); task
+            .then(snapshot => snapshot.ref.getDownloadURL())
+            .then(url => {
+                console.log(url);
+                alert('image uploaded successfully');
+                document.querySelector("#image").src = url;
+            })
+            .catch(console.error);
+    }
+    const errorMsgElement = document.querySelector('span#errorMsg');
+</script>
+
+</html>

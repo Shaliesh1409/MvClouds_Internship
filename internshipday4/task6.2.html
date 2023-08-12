@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First Recurring Character</title>
+</head>
+<body>
+  <input type="file" id="fileInput" accept=".txt">
+  <div id="output"></div>
+
+  <script>
+    function findFirstRecurringChar(word, index = 0, charIndices = {}) {
+      if (index >= word.length) {
+        return charIndices;
+      }
+
+      const char = word[index];
+
+      if (charIndices[char] === undefined) {
+        charIndices[char] = [index];
+      } else if (charIndices[char].length === 1) {
+        charIndices[char].push(index);
+      }
+
+      return findFirstRecurringChar(word, index + 1, charIndices);
+    }
+
+    function processWords(words) {
+      const outputDiv = document.getElementById('output');
+      outputDiv.innerHTML = '';
+
+      words.forEach((word, index) => {
+        const recurringCharIndices = findFirstRecurringChar(word);
+        outputDiv.innerHTML += `Word ${index + 1}: ${JSON.stringify(recurringCharIndices)}<br>`;
+      });
+    }
+
+    const fileInput = document.getElementById('fileInput');
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const fileContent = e.target.result;
+          const words = fileContent.trim().split('\n');
+          processWords(words);
+        };
+        reader.readAsText(file);
+      }
+    });
+  </script>
+</body>
+</html>

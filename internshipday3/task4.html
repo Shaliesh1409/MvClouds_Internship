@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table</title>
+</head>
+
+<body>
+    <h2>ENTER A TABLE OF NUMBER YOU WANT :</h2>
+    <input type="number" id="table">
+    <button onclick="displaytable()"> SHOW TABLE </button>
+    <div id="container"></div>
+
+</body>
+<script>
+    function displaytable() {
+        const table = document.getElementById("table");
+        const container = document.getElementById("container");
+
+        const number = parseInt(table.value);
+
+        if (isNaN(number) || number <= 0) {
+            table.innerHTML="<p> please enter a positive integer </p>";
+            return;
+
+        }
+
+        let multiply="<h2>MULTIPLICATION TABLE OF " + number + "<h2>is as follows";
+            for(i=1;i<=10;i++)
+            {
+
+                const result = number*i;
+            console.log(result);            }
+            table += "</table>";
+            
+            container.innerHTML = table;
+
+            }
+
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Time Remaining Calculator</title>
+</head>
+<body>
+    <h1>Time Remaining </h1>
+    <label for="targetDate">Enter a target date and time:</label>
+    <input type="datetime-local" id="targetDate" />
+    <button onclick="calculateTimeRemaining()">Calculate</button>
+    <p id="result"></p>
+
+    <script>
+        function calculateTimeRemaining() {
+            const targetDateInput = document.getElementById("targetDate");
+            const targetDate = new Date(targetDateInput.value);
+            const currentDate = new Date();
+
+            if (isNaN(targetDate)) {
+                document.getElementById("result").textContent = "Please enter a valid date and time.";
+                return;
+            }
+
+            const timeRemaining = targetDate - currentDate;
+
+            if (timeRemaining <= 0) {
+                document.getElementById("result").textContent = "The entered date has already passed.";
+            } else {
+                const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                document.getElementById("result").textContent = `Time remaining: ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+            }
+        }
+    </script>
+</body>
+</html>

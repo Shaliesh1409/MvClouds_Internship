@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Consecutive Ascending Number Groups</title>
+</head>
+<body>
+    <h1>Consecutive Ascending Number Groups</h1>
+    <label for="inputString">Enter a string of numbers:</label>
+    <input type="text" id="inputString" />
+    <button onclick="groupAscendingNumbers()">Result</button>
+    <p id="result"></p>
+
+    <script>
+        function groupAscendingNumbers() {
+            const inputString = document.getElementById("inputString").value;
+            const resultElement = document.getElementById("result");
+            let groups = [];
+            let currentGroup = "";
+
+            for (let i = 0; i < inputString.length; i++) {
+                const currentNumber = parseInt(inputString[i], 10);
+
+                if (i === 0 || currentNumber === parseInt(inputString[i - 1], 10) + 1) {
+                    currentGroup += currentNumber;
+                } else {
+                    groups.push(currentGroup);
+                    currentGroup = currentNumber.toString();
+                }
+            }
+
+            if (currentGroup !== "") {
+                groups.push(currentGroup);
+            }
+
+            const groupedNumbers = groups.join(" ");
+
+            resultElement.textContent = "Output: " + groupedNumbers;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keyframe Animations</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .bounce-up {
+      animation: bounceUp 2s ease infinite;
+    }
+
+    .rotate {
+      animation: rotate 3s linear infinite;
+    }
+
+    .slide-in-right {
+      animation: slideInRight 2s ease infinite;
+    }
+
+    @keyframes bounceUp {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-30px);
+      }
+      60% {
+        transform: translateY(-15px);
+      }
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes slideInRight {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    .animation-box {
+      width: 100px;
+      height: 100px;
+      background-color: #ff6600;
+      color: #fff;
+      font-size: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="animation-box bounce-up">Bounce Up</div>
+  <div class="animation-box rotate">Rotate</div>
+  <div class="animation-box slide-in-right">Slide In Right</div>
+</body>
+</html>

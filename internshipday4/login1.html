@@ -1,0 +1,64 @@
+<DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <title>Login page</title>
+    </head>
+    <body>
+        <div class="container text-center mt-5">
+            <h1>Kindly fill in your details below, to Login</h1>
+            
+            <form method='post' name='login' class="pt-3">
+                <p class="text-danger message_error text-center"></p>
+                <p class="text-success message_success text-center"></p>
+                
+                <div class="form-row">
+                    <div class="col-md-12 mt-5">
+                        <input name='username' maxlength="10" type="text" class="form-control p-3 username" placeholder="Enter Username" required />
+                    </div>
+                    <div class="col-md-12 mt-5">
+                        <input name='password' type="password" class="form-control p-3 password" class="password" placeholder="Enter password" maxlength="8" required />
+                    </div>
+                    <div class="col-md-6 p-3">
+                        <input type="submit" value="Register" class="w-100 btn btn-primary" />
+                    </div>
+                </div>
+            </form>
+            <a href="login.html">
+                <div class="col-md-6 p-3"></div>
+            </a>
+        </div>
+        
+        <script>
+            const q=(n,ex)=>n.querySelector(ex);
+            const qa=(n,ex)=>n.querySelectorAll(ex);
+            const msg=(n,s)=>q(form,n).textContent=s;
+            const form=document.forms.login;
+
+            q( form,"input[type='submit']" ).addEventListener('click', function(e){
+                e.preventDefault();
+                
+                const username=form.username.value;
+                const password=form.password.value;
+                const exists=localStorage.getItem( username )!==null;
+                
+                if( !exists ){
+                    // username does NOT exist...
+                    msg('p.message_error','Sorry! This Username doesn\'t exists, please create a profile!');
+                }else{
+                    // Everything OK... proceed to welcome page
+                    msg('p.message_success','Login Successful');
+                    
+                    // Set a cookie to log which user has successfully logged in. This will be read on `welcome.html`
+                    document.cookie='username='+username;
+                    
+                    // redirect to the welcome page
+                    setTimeout( ()=>window.location.replace("welcome.html"), 5000 );
+                }
+            })
+        </script>
+    </body>
+</html>

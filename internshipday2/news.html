@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Channel Headline</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .headline-container {
+      overflow: hidden;
+      background-color: #f1f1f1;
+      position: relative;
+      height: 50px;
+    }
+
+    .headline-text {
+      position: absolute;
+      white-space: nowrap;
+      font-size: 24px;
+      animation: scrollText 15s linear infinite;
+      top: calc(50% - (36 / 2)); 
+      
+    }
+    .headline-text img{
+
+        height: 40px;
+        width: 100%;
+       
+
+    }
+
+
+    @keyframes scrollText {
+      0% {
+        left: 100%;
+      }
+      100% {
+        left: -100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="headline-container">
+    <div class="headline-text">
+        <img src="image.jpg" alt="News Image 1">
+      Latest News: This is a sample scrolling headline text for the news channel.
+    </div>
+  </div>
+</body>
+<script>
+
+  
+</script>
+</html>

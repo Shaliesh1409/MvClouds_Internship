@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multiplication Table</title>
+</head>
+<body>
+    <h2>Enter a number to display its multiplication table:</h2>
+    <input type="number" id="numberInput">
+    <button onclick="displayMultiplicationTable()">Show Table</button>
+    <div id="tableContainer"></div>
+
+    <script>
+        function displayMultiplicationTable() {
+            const numberInput = document.getElementById('numberInput');
+            const tableContainer = document.getElementById('tableContainer');
+            
+            const number = parseInt(numberInput.value);
+            
+            // Validate user input (ensure it's a positive integer)
+            if (isNaN(number) || number <= 0) {
+                tableContainer.innerHTML = "<p>Please enter a valid positive integer.</p>";
+                return;
+            }
+            
+            let table = "<h2>Multiplication Table of " + number + "</h2><table>";
+            for (let i = 1; i <= 10; i++) {
+                const result = number * i;
+                table += "<tr><td>" + number + " x " + i + "</td><td>=</td><td>" + result + "</td></tr>";
+            }
+            table += "</table>";
+            
+            tableContainer.innerHTML = table;
+        }
+    </script>
+</body>
+</html>

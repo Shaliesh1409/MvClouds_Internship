@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Table Viewer</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Table Viewer</h1>
+    <input type="file" accept=".csv" id="csvFileInput" />
+    <button onclick="handleFile()">Upload CSV</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Download</th>
+            </tr>
+        </thead>
+        <tbody id="imageTableBody">
+        </tbody>
+    </table>
+
+    <script>
+        function handleFile() {
+            const fileInput = document.getElementById('csvFileInput');
+            const file = fileInput.files[0];
+
+            if (file) {
+                parseCSV(file);
+            }
+        }
+
+        function parseCSV(file) {
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                const csvData = event.target.result;
+                const imageURLs = csvData.split(/\r?\n/);
+
+                const tableBody = document.getElementById('imageTableBody');
+                tableBody.innerHTML = '';
+
+                for (const imageURL of imageURLs) {
+                    const imageRow = createImageRow(imageURL);
+                    tableBody.appendChild(imageRow);
+                }
+            };
+
+            reader.readAsText(file);
+        }
+
+        function createImageRow(imageURL) {
+            const row = document.createElement('tr');
+
+            const imageCell = document.createElement('td');
+            const image = document.createElement('img');
+            image.src = imageURL;
+            image.style.maxWidth = '100px';
+            imageCell.appendChild(image);
+
+            const downloadCell = document.createElement('td');
+            const downloadButton = document.createElement('a');
+            downloadButton.href = imageURL;
+            downloadButton.download = 'image.jpg';
+            downloadButton.textContent = 'Download';
+            downloadCell.appendChild(downloadButton);
+
+            row.appendChild(imageCell);
+            row.appendChild(downloadCell);
+
+            return row;
+        }
+    </script>
+</body>
+</html>

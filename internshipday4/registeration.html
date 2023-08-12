@@ -1,0 +1,378 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/stel.css">
+    <title>Document</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+        position: relative;
+
+    }
+
+
+    body {
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(123deg, #71b8e7, #9b59b6);
+        scroll-behavior: smooth;
+
+    }
+
+    .container {
+        max-width: 700px;
+        width: 100%;
+        background: #fff;
+        padding: 25px 30px;
+        border-radius: 5px;
+    }
+
+    .container .title {
+        font-size: 25px;
+        font-weight: 500;
+        position: relative;
+    }
+
+    .container .title::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 3px;
+        width: 30px;
+        background: linear-gradient(123deg, #71b8e7, #9b59b6);
+    }
+
+    .container form .user_details {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    form .user_details .input_pox {
+        margin-bottom: 15px;
+        margin: 20px 0 12px 0;
+        width: calc(100% / 2 - 20px);
+    }
+
+    .user_details .input_pox .datails {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .user_details .input_pox input {
+        height: 45px;
+        width: 100%;
+        outline: none;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        padding-left: 15px;
+        font-size: 16px;
+        border-bottom-width: 2px;
+        transition: all 0.3s ease;
+
+    }
+
+    .user_details .input_pox input:focus,
+    .user_details .input_pox input:valid {
+        border-color: #9b59b6;
+    }
+
+
+    form input[type="radio"] {
+        display: none;
+    }
+
+    form .button {
+        height: 75px;
+        width: 600px;
+        margin: 20px 0;
+    }
+
+    form .button input {
+        height: 100%;
+        width: 100%;
+        outline: none;
+        color: #fff;
+        border: none;
+        font-size: 25px;
+        font-weight: 500;
+        border-radius: 5px;
+        letter-spacing: 1px;
+        background: linear-gradient(123deg, #71b8e7, #9b59b6);
+
+    }
+
+
+    form .button input :hover {
+        background: linear-gradient(-123deg, #71b8e7, #9b59b6);
+    }
+
+    @media (max-width: 584px) {
+        .container {
+            max-width: 100%;
+        }
+
+        form .user_details .input_pox {
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+
+
+        .container form .user_details {
+            max-height: 300px;
+            overflow: scroll;
+        }
+
+        .user_details::-webkit-scrollber {
+            width: 0;
+        }
+    }
+
+
+    #message p {
+        padding: 10px 35px;
+        font-size: 18px;
+    }
+
+    /* Add a green text color and a checkmark when the requirements are right */
+    .valid {
+        color: green;
+    }
+
+    .valid:before {
+        position: relative;
+        left: -35px;
+        content: "&#10004;";
+    }
+
+    /* Add a red text color and an "x" icon when the requirements are wrong */
+    .invalid {
+        color: red;
+    }
+
+    .invalid:before {
+        position: relative;
+        left: -35px;
+        content: "&#10006;";
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="title">Register An Account!</div>
+        <!-- <form action="confirmationpage.html" id="registerform"> -->
+        <form id="registerform">
+            <div class="user_details">
+                <div class="input_pox">
+                    <span class="datails">Name</span>
+                    <input type="text" id="name" placeholder="enter your name" required>
+                </div>
+                <div class="input_pox">
+                    <span class="datails">User name</span>
+                    <input type="text" id="lname" placeholder="enter your Username" required>
+                </div>
+                <div class="input_pox">
+                    <span class="datails">Email</span>
+                    <input type="text" id="email" placeholder="enter your Email" required>
+                </div>
+                <div class="input_pox">
+                    <span class="datails">Age</span>
+                    <input type="number" id="age" placeholder="enter your Age" required>
+                </div>
+                <div class="input_pox">
+                    <span class="datails">Password</span>
+                    <input type="text" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                        title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                        placeholder="enter your Password" required>
+                </div>
+                <div class="input_pox">
+                    <span class="datails">Confirm Password</span>
+                    <input type="text" id="repassword" placeholder="Confirm your Password" required>
+                </div>
+            </div>
+
+            <div class="button">
+                <input type="submit" onclick="" value="Register">
+            </div>
+        </form>
+    </div>
+
+    <div id="message">
+        <h3>Password must contain the following:</h3>
+        <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+        <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+        <p id="number" class="invalid">A <b>number</b></p>
+        <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+    </div>
+
+</body>
+<script>
+        const registerform = document.getElementById("registerform").value;
+        const name = document.getElementById("name").value;
+        const lname = document.getElementById("lname").value;
+        const email = document.getElementById("email").value;
+        const age = document.getElementById("age").value;
+        const password = document.getElementById("password").value;
+        const repassword = document.getElementById("repassword").value;
+
+        form.addEventListner('submit', e => {
+            e.preventDefault();
+
+            validateInputs();
+
+        });
+
+        const setError = (element, message) => {
+            const inputControl = element.parentElement;
+            const errorDisplay = inputControl.queryselector('.error');
+
+            errorDisplay.innerText = message;
+            inputControl.classList.add('error');
+            inputControl.classList.remove('success');
+        };
+
+        const setSuccess = (element, message) => {
+            const inputControl = element.parentElement;
+            const errorDisplay = inputControl.queryselector('.error');
+
+            errorDisplay.innerText = message;
+            inputControl.classList.add('success');
+            inputControl.classList.remove('error');
+        };
+
+        const isvalidEmail = email => {
+            const re = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
+            return re.test(String(email).toLowerCase());
+        }
+
+        const validateInputs = () => {
+            console.log('Validation Input');
+
+            const name = name.value.trim();
+            const lname = lname.value.trim();
+            const email = email.value.trim();
+            const age = age.value.trim();
+            const password = password.value.trim();
+            const repassword = repassword.value.trim();
+
+            if (name === '') {
+                setError(name, 'name is required');
+            } else {
+                setSuccess(name);
+            }
+
+            if (lname === '') {
+                setError(lname, 'name is required');
+            } else {
+                setSuccess(lname);
+            }
+
+            if (email === '') {
+                setError(email, 'email is required');
+            } else if (!isvalidEmail(email)) {
+                setError(email, 'provide a valid email address');
+            } else {
+                setSuccess(name);
+            }
+
+            if (age === '') {
+                setError(age, 'name is required');
+            } else {
+                setSuccess(age);
+            }
+
+            if (password === '') {
+                setError(password, 'name is required');
+            } else if (password.length < 8) {
+                setError(password, 'password must be atleast 8 characters');
+            } else {
+                setSuccess(password);
+            }
+            console.log({password});
+            console.log({repassword});
+            debugger;
+            if (repassword === '') {
+                setError(repassword, 'please confirm your password');
+            } else if (repassword !== password) {
+                setError(repassword, 'passwords do not match');
+            } else {
+                
+                setSuccess(repassword);
+            }
+        }
+
+        var myInput = document.getElementById("password");
+        var letter = document.getElementById("letter");
+        var capital = document.getElementById("capital");
+        var number = document.getElementById("number");
+        var length = document.getElementById("length");
+
+        // When the user clicks on the password field, show the message box
+        myInput.onfocus = function () {
+            document.getElementById("message").style.display = "block";
+        }
+
+        // When the user clicks outside of the password field, hide the message box
+        myInput.onblur = function () {
+            document.getElementById("message").style.display = "none";
+        }
+
+        // When the user starts to type something inside the password field
+        myInput.onkeyup = function () {
+            // Validate lowercase letters
+            var lowerCaseLetters = /[a-z]/g;
+            if (myInput.value.match(lowerCaseLetters)) {
+                letter.classList.remove("invalid");
+                letter.classList.add("valid");
+            } else {
+                letter.classList.remove("valid");
+                letter.classList.add("invalid");
+            }
+
+            // Validate capital letters
+            var upperCaseLetters = /[A-Z]/g;
+            if (myInput.value.match(upperCaseLetters)) {
+                capital.classList.remove("invalid");
+                capital.classList.add("valid");
+            } else {
+                capital.classList.remove("valid");
+                capital.classList.add("invalid");
+            }
+
+            // Validate numbers
+            var numbers = /[0-9]/g;
+            if (myInput.value.match(numbers)) {
+                number.classList.remove("invalid");
+                number.classList.add("valid");
+            } else {
+                number.classList.remove("valid");
+                number.classList.add("invalid");
+            }
+
+            // Validate length
+            if (myInput.value.length >= 8) {
+                length.classList.remove("invalid");
+                length.classList.add("valid");
+            } else {
+                length.classList.remove("valid");
+                length.classList.add("invalid");
+            }
+        }
+
+</script>
+
+</html>

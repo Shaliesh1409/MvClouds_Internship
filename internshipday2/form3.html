@@ -1,0 +1,386 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/stel.css">
+    <title>Document</title>
+
+
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+        position: relative;
+
+    }
+
+
+    body {
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(123deg, #71b8e7, #9b59b6);
+        scroll-behavior: smooth;
+
+    }
+
+    .container {
+        max-width: 700px;
+        width: 100%;
+        background: #fff;
+        padding: 25px 30px;
+        border-radius: 5px;
+    }
+
+    .container .title {
+        font-size: 25px;
+        font-weight: 500;
+        position: relative;
+    }
+
+    .container .title::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 3px;
+        width: 30px;
+        background: linear-gradient(123deg, #71b8e7, #9b59b6);
+    }
+
+    .container form .user_details {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    form .user_details .input_pox {
+        margin-bottom: 15px;
+        margin: 20px 0 12px 0;
+        width: calc(100% / 2 - 20px);
+    }
+
+    .user_details .input_pox .datails {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .user_details .input_pox input {
+        height: 45px;
+        width: 100%;
+        outline: none;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        padding-left: 15px;
+        font-size: 16px;
+        border-bottom-width: 2px;
+        transition: all 0.3s ease;
+
+    }
+
+    .user_details .input_pox input:focus,
+    .user_details .input_pox input:valid {
+        border-color: #9b59b6;
+    }
+
+    form .hobbbies_details .hobbies_title {
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    form .hobbies_details .category2 {
+        display: flex;
+        width: 80%;
+        margin: 14px 0;
+        justify-content: space-between;
+    }
+
+    .hobbies_details .category2 label {
+        display: flex;
+    }
+
+    .hobbies_details .category2 .let {
+        height: 18px;
+        width: 18px;
+        background: #d9d9d9;
+        border-radius: 50%;
+        margin-right: 10px;
+        border: 5px solid transparent;
+    }
+
+    #let-1:checked~.category2 label .one,
+    #let-2:checked~.category2 label .two,
+    #let-3:checked~.category2 label .three #let-4:checked~.category2 label .four {
+
+        border-color: #d9d9d9;
+        background-color: #9b59b6;
+    }
+
+    form input[type="checkbox"] {
+        display: none;
+    }
+
+
+    form .gender_details .gender_title {
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    form .gender_details .category {
+        display: flex;
+        width: 80%;
+        margin: 14px 0;
+        justify-content: space-between;
+    }
+
+    .gender_details .category label {
+        display: flex;
+    }
+
+    .gender_details .category .dot {
+        height: 18px;
+        width: 18px;
+        background: #d9d9d9;
+        border-radius: 50%;
+        margin-right: 10px;
+        border: 5px solid transparent;
+    }
+
+    #dot-1:checked~.category label .one,
+    #dot-2:checked~.category label .two,
+    #dot-3:checked~.category label .three {
+        border-color: #d9d9d9;
+        background-color: #9b59b6;
+    }
+
+    form input[type="radio"] {
+        display: none;
+    }
+
+    form .button {
+        height: 45px;
+        margin: 20px 0;
+    }
+
+    form .button input {
+        height: 100%;
+        width: 100%;
+        outline: none;
+        color: #fff;
+        border: none;
+        font-size: 18px;
+        font-weight: 500;
+        border-radius: 5px;
+        letter-spacing: 1px;
+        background: linear-gradient(123deg, #71b8e7, #9b59b6);
+
+    }
+
+    .image {
+
+        font-weight: 500;
+    }
+
+    .image.file {
+        font-weight: 500;
+    }
+
+    .image {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        font-weight: 500
+    }
+
+    .image {
+        margin-bottom: 15px;
+        margin: 20px 0 12px 0;
+        width: calc(100% / 2 - 20px);
+        font-size: 18px;
+        font-weight: 500
+    }
+
+    form .button input :hover {
+        background: linear-gradient(-123deg, #71b8e7, #9b59b6);
+    }
+
+    @media (max-width: 584px) {
+        .container {
+            max-width: 100%;
+        }
+
+        form .user_details .input_pox {
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        form .gender_details .category {
+            width: 100%;
+        }
+
+        .container form .user_details {
+            max-height: 300px;
+            overflow: scroll;
+        }
+
+        .user_details::-webkit-scrollber {
+            width: 0;
+        }
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="title">Create An Account!</div>
+        <form action="#" id="content">
+            <div class="user_details">
+                <div class="input_pox">
+                    <span class="datails">First Name</span>
+                    <input type="text" id="name" placeholder="enter your first name" required>
+                </div>
+                <div class="input_pox">
+                    <span class="datails">Last name</span>
+                    <input type="text" id="lastname" placeholder="enter your last name" required>
+                </div>
+                <div class="input_pox">
+                    <span class="datails">Email</span>
+                    <input type="text" id="email" placeholder="enter your Email" required>
+                </div>
+                <div class="input_pox">
+                    <span class="datails">Age</span>
+                    <input type="number" id="age" placeholder="enter your Age" required>
+                </div>
+                <div class="input_pox">
+                    <span class="datails">Password</span>
+                    <input type="text" id="password" placeholder="enter your Password" required>
+                </div>
+                <div class="input_pox">
+                    <span class="datails">Confirm Password</span>
+                    <input type="text" id="repassword" placeholder="Confirm your Password" required>
+                </div>
+            </div>
+            <div class="image">
+                <label for="image">
+                    <span class="uploadimage">Upload Profile Picture</span></label>
+                <input type="file" id="image" ame="image"><br>
+            </div>
+            <div class="image"><label for="lang"> Source&nbsp Of&nbsp Income : </label>
+                <select name="source of income" id="sourceofincome">
+                    <option value="Employed">Employed</option>
+                    <option value="Unemployed">Unemployed</option>
+                    <option value="Business">Business</option>
+                    <option value="Part-time job">Part-time job</option>
+                </select>
+            </div>
+            <div class="hobbies_details" id="hobbies">
+                <input type="checkbox" name="music" id="let-1">
+                <input type="checkbox" name="sports" id="let-2">
+                <input type="checkbox" name="travel" id="let-3">
+                <input type="checkbox" name="movies" id="let-4">
+                <span class="hobbies_title"> Hobbies</span>
+                <div class="category2">
+                    <label for="let-1">
+                        <span class="let one"></span>
+                        <span class="hobbies">Music</span>
+                    </label>
+                    <label for="let-2">
+                        <span class="let two"></span>
+                        <span class="hobbies">Sports</span>
+                    </label>
+                    <label for="let-3">
+                        <span class="let three"></span>
+                        <span class="hobbies">Travel</span>
+                    </label>
+                    <label for="let-4">
+                        <span class="let four"></span>
+                        <span class="hobbies">Movies</span>
+                    </label>
+                </div>
+
+                <div class="gender_details" id="gender">
+                    <input type="radio" name="gender" id="dot-1">
+                    <input type="radio" name="gender" id="dot-2">
+                    <input type="radio" name="gender" id="dot-3">
+                    <span class="gender_title"> Gender</span>
+                    <div class="category">
+                        <label for="dot-1">
+                            <span class="dot one"></span>
+                            <span class="gender">Male</span>
+                        </label>
+                        <label for="dot-2">
+                            <span class="dot two"></span>
+                            <span class="gender">Female</span>
+                        </label>
+                        <label for="dot-3">
+                            <span class="dot three"></span>
+                            <span class="gender">Perefer not to say</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="button">
+                    <input type="submit" value="Create">
+                </div>
+        </form>
+        <script>
+            const firebaseConfig = {
+                apiKey: "AIzaSyDL5qHM4VM0IH_O3sI8hBNZty8AQnleWa8",
+                authDomain: "contactme-fa839.firebaseapp.com",
+                databaseURL: "https://contactme-fa839-default-rtdb.firebaseio.com",
+                projectId: "contactme-fa839",
+                storageBucket: "contactme-fa839.appspot.com",
+                messagingSenderId: "930377440460",
+                appId: "1:930377440460:web:5f4e92ca6ab5f2a84a7669"
+            };
+
+            firebase.initializeApp(firebaseConfig);
+            var ref = firebase.database().ref("contactme");
+
+            var submit = function () {
+                var name = $("#name").val();
+                var lastname = $("#lastname").val();
+                var email = $("#email").val();
+                var age = $("#age").val();
+                var password = $("#password").val();
+                var repassword = $("#repassword").val();
+                var image = $("#image").val();
+                var sourceofincome = $("#sourceofincome").val();
+                var hobbies = $("#hobbies").val();
+                var gender = $("#gender").val();
+
+                ref.push({
+                    "name": name,
+                    "lastname":lastname,
+                    "email": email,
+                    "age":age,
+                    "password": password,
+                    "subject": password,
+                    "message": message
+                })
+                    .then(function (ref) {
+                        console.log(ref.parent + "/" + ref.key);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+
+            };
+
+            $("#formbutton").click(function () {
+                submit();
+            });
+        </script>
+    </div>
+
+</body>
+
+</html>
