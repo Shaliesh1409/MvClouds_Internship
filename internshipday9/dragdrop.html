@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    .circle-container {
+      position: relative;
+    }
+
+    .circle {
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      position: absolute;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .draggable-circle {
+      background-color: #3498db;
+    }
+
+    .target-circle {
+      background-color: #e74c3c;
+      left: 500px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="circle-container">
+    <div id="draggableCircle" class="circle draggable-circle" draggable="true">
+      <span>Drag Me</span>
+    </div>
+    <div id="targetCircle" class="circle target-circle">
+      <span>Drop Here</span>
+    </div>
+  </div>
+
+  <script>
+    const draggableCircle = document.getElementById('draggableCircle');
+    console.log({draggableCircle});
+    const targetCircle = document.getElementById('targetCircle');
+
+    let draggableCirclePosition = {};
+
+    draggableCircle.addEventListener('dragstart', (event) => {
+      console.log('start');
+      event.dataTransfer.setData('text/plain', 'draggableCircle');
+      draggableCirclePosition.x = event.clientX;
+      draggableCirclePosition.y = event.clientY;
+    });
+
+    targetCircle.addEventListener('dragover', (event) => {
+      event.preventDefault();
+
+    });
+
+    targetCircle.addEventListener('drop', (event) => {
+      event.preventDefault();
+      console.log('Drop');
+
+      try {
+        const draggedCircle = event.dataTransfer.getData('text/plain');
+        console.log({ draggedCircle });
+
+        console.log('EVENT==>',event);
+        // console.log('EVENT==>',event.target.parentElement.children.length);
+        // console.log('EVENT==>',event.target.parentElement.children[event.target.parentElement.children.length-1].clientHeight);
+
+        // var previousheightwidth = event.target.children[event.target.children.length-1].clientHeight;
+        // console.log({previousheightwidth});
+
+        // New Element
+          const newCircle = document.createElement('div');
+          newCircle.setAttribute("draggable", true);
+          newCircle.className = 'circle';
+          // console.log('before--->',{previousheightwidth});
+
+          newCircle.style.width = draggableCircle.clientWidth - 30 +'px';
+          newCircle.style.height = draggableCircle.clientWidth - 30 +'px';
+          // newCircle.clientWidth = previousheightwidth;
+
+          // console.log('width-->>',newCircle.style.width);
+          
+          // previousheightwidth = newCircle.clientWidth - 30;
+          
+          // console.log('after-->',{previousheightwidth});
+          // console.log(newCircle.style.height)
+          newCircle.style.borderRadius = '50%';
+          newCircle.style.backgroundColor = getRandomColor();
+          newCircle.style.position = 'absolute';
+          newCircle.style.left = `${draggableCirclePosition.x}px`;
+          newCircle.style.top = `${draggableCirclePosition.y}px`;
+          document.body.appendChild(newCircle);
+          
+          draggableCircle.style.width = draggableCircle.clientWidth - 30 +'px';
+          console.log('draggable circle==>',draggableCircle.style.width) + 'px';
+          draggableCircle.style.height = draggableCircle.clientHeight - 30 + 'px';
+          targetCircle.appendChild(draggableCircle);
+
+
+          let newCirclePosition = {};
+
+          newCircle.addEventListener('dragstart', (event) => {
+            console.log('start');
+            event.dataTransfer.setData('text/plain', 'newCircle');
+            newCirclePosition.x = event.clientX;
+            newCirclePosition.y = event.clientY;
+          });
+
+          targetCircle.addEventListener('dragover', (event) => {
+            event.preventDefault();
+          });
+
+          targetCircle.addEventListener('drop', (event) => {
+            event.preventDefault();
+            console.log('Drop');
+           // newCircle.style.width = '350px';
+           // newCircle.style.height = '350px';
+            newCircle.style.left = `${targetCircle.offsetWidth / 2 - 150}px`;
+            newCircle.style.top = `${targetCircle.offsetHeight / 2 - 150}px`;
+            
+             targetCircle.appendChild(newCircle);
+            //  newCircle.style.width = `${parseFloat(newCircle.style.width) + 20 }px`;
+            // newCircle.style.height = `${parseFloat(newCircle.style.height) + 20}px`;
+
+
+
+
+          
+
+
+
+
+          });
+
+
+        }
+       catch (error) {
+        console.log({ error });
+      }
+
+    });
+
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+  </script>
+</body>
+
+</html>
